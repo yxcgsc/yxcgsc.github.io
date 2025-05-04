@@ -1,999 +1,204 @@
-<!DOCTYPE html>
-<html lang="zh">
-    <head>
-  <!-- 元数据 -->
-  <meta charset="utf-8">
-  
-  
-  <title>游戏CG收藏馆</title>
-  
-  <meta name="author" content="yxcgsc" />
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="robots" content="index,follow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="format-detection" content="telphone=no, email=no" />
-  
-    <meta name="keywords" content="" />
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="游戏CG收藏馆">
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>游戏CG收藏</title><meta name="author" content="yxcgsc"><meta name="copyright" content="yxcgsc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta property="og:type" content="website">
+<meta property="og:title" content="游戏CG收藏">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="游戏CG收藏馆">
-<meta property="og:locale">
+<meta property="og:site_name" content="游戏CG收藏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.picgo.net/2025/05/04/6dd92faa-f072-4063-9089-5b596a9219eca05d8a19a250ee42.jpg">
 <meta property="article:author" content="yxcgsc">
 <meta name="twitter:card" content="summary">
-  
-  <!-- 站点验证相关 -->
-  
-    
-    
-    
-  
-  <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
-  
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
-    <script src="/js/kr-dark.min.js"></script>
-  
-  
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
-  
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
-  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
-  
-  
-    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
-  
-  
-    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
-  
-  <!-- 不得不预先加载的一些JS文件 -->
-  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
-  
-    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
-  
-  
-  <style>
-    
-      .kratos-cover.kratos-cover-2 {
-        background-image: url('/images/banner_dark.webp');
+<meta name="twitter:image" content="https://img.picgo.net/2025/05/04/6dd92faa-f072-4063-9089-5b596a9219eca05d8a19a250ee42.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
       }
-    
-    
-      @media(min-width:768px) {
-        body.custom-background {
-          background-image: url('/images/bg.webp');
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
       }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-  </style>
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-
-    <body class="custom-background">
-        <div id="kratos-wrapper">
-    <div id="kratos-page">
-        <div id="kratos-header">
-            <header id="kratos-desktop-topnav" class="kratos-topnav">
-                <div class="container">
-                    <div class="nav-header">
-                        <nav id="kratos-menu-wrap">
-                            <ul id="kratos-primary-menu" class="sf-menu">
-                                
-                                    
-                                    
-                                        
-                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
-                                        
-                                    
-                                        
-                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
-                                        
-                                    
-                                        
-                                            <li><a href="/friends/"><i class="fa fa-telegram"></i>TG群</a></li>
-                                        
-                                    
-                                        
-                                            <li><a href="/tags/"><i class="fa fa-tag"></i>标签</a></li>
-                                        
-                                    
-                                        
-                                            <li><a href="/categories/"><i class="fa fa-list"></i>分类</a></li>
-                                        
-                                    
-                                        
-                                            <li><a href="/yxcg/"><i class="fa fa-comment"></i>进群</a></li>
-                                        
-                                    
-                                
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-            <header id="kratos-mobile-topnav" class="kratos-topnav">
-                <div class="container">
-                    <div class="color-logo"><a href="/">游戏CG收藏馆</a></div>
-                    <div class="nav-toggle">
-                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
-                            <i></i>
-                        </a>
-                    </div>
-                </div>
-            </header>
-        </div>
-        <div class="kratos-start kratos-hero-2">
-            <!-- <div class="kratos-overlay"></div> -->
-            <div class="kratos-cover kratos-cover-2 text-center">
-                <div class="desc desc2 animate-box">
-                    <a href="/">
-                        <h2>游戏CG收藏馆</h2> <br />
-                        <span>视频制作完都会上传</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div id="kratos-blog-post">
-            <div class="container">
-                <div id="main" class="row">
-                    
-
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
         
-
-            <section class="col-md-8">
-
-        
-
-            <!-- Breadcrumb for tag & category page -->
-
-
-
-
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
     
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/Half-Demon/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://img.picui.cn/free/2025/03/13/67d237375d16b.jpg" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/Half-Demon/" itemprop="mainEntityOfPage"><span itemprop="name headline">半妖忍少女 Half-Demon Shinobi</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🎴 半妖忍少女 Half-Demon Shinobi | 纯爱向驱魔卡牌Roguelite 🔥国产生态链力作 | 芒果派对发行 | 2024年12月18日Steam发售  
-
-购买地址🎮 核心信息速览
-价格: 💰 史低$9.8...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-16T17:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-17</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/%E5%8D%A1%E7%89%8C/" rel="tag">卡牌</a>, <a class="tag-none-link" href="/tags/%E5%BF%8D%E8%80%85/" rel="tag">忍者</a>, <a class="tag-none-link" href="/tags/%E6%88%98%E6%96%97/" rel="tag">战斗</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/Half-Demon/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/SummerForYou/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://s21.ax1x.com/2025/03/13/pEU0aXn.webp" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/SummerForYou/" itemprop="mainEntityOfPage"><span itemprop="name headline">夏日为你 Summer For You</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🌞夏日为你 Summer For You | 魅魔の恋爱倒计时💘DEMO Ver0.5.1 | 官方中文步兵版 | PC+安卓双端 | 2025年1月31日Steam发售  
-购买地址
-🎮 基本信息速览
-开发商: AniCore...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-15T17:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-16</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/SLG/" rel="tag">SLG</a>, <a class="tag-none-link" href="/tags/%E6%81%8B%E7%88%B1/" rel="tag">恋爱</a>, <a class="tag-none-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/SummerForYou/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/Miss%20Neko/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://s21.ax1x.com/2025/03/13/pEUBN4O.webp" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/Miss%20Neko/" itemprop="mainEntityOfPage"><span itemprop="name headline">《猫咪小姐1-3》</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🐾✨《猫咪小姐1-3》全系列CG珍藏版炸裂登场！🎮三倍猫娘の高萌暴击🌟【3500kbps&#x2F;60fps丝滑收藏】
-购买地址1购买地址2
-🎀ฅ^•ﻌ•^ฅ 游戏档案萌系宇宙《Miss Neko》全三部曲🌟由【Doubl...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-13T19:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-14</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/2D/" rel="tag">2D</a>, <a class="tag-none-link" href="/tags/%E4%BC%91%E9%97%B2/" rel="tag">休闲</a>, <a class="tag-none-link" href="/tags/%E7%9B%8A%E6%99%BA/" rel="tag">益智</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/Miss%20Neko/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/TakeMeToThe/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://img.picui.cn/free/2025/03/13/67d22de5e5ab2.jpg" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/TakeMeToThe/" itemprop="mainEntityOfPage"><span itemprop="name headline">Take Me To The Dungeon!! 带我去地下城吧</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🏰 Take Me To The Dungeon!! 带我去地下城吧 🗡️日系肉鸽卡牌×动态地牢探险 | 全日语CV | 多结局剧情  
-购买地址
-🎮 核心玩法速览🌌 迷宫系统
-立体地牢探索：预判未来3层路线，在商店&#x2F...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-13T19:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-14</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/PUZ/" rel="tag">PUZ</a>, <a class="tag-none-link" href="/tags/%E5%8D%A1%E7%89%8C/" rel="tag">卡牌</a>, <a class="tag-none-link" href="/tags/%E8%82%89%E9%B8%BD/" rel="tag">肉鸽</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/TakeMeToThe/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/AURA:Cards/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://img.picui.cn/free/2025/03/13/67d2245d07654.jpg" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/AURA:Cards/" itemprop="mainEntityOfPage"><span itemprop="name headline">奥拉：卡牌狂潮</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🎴 奥拉：卡牌狂潮 | 中文豪华版全DLC整合包 🐉Build.13069759-1.2.3+新年日历+全DLC | 免安装版 | 1.31GB冒险/卡牌/视觉小说/魔法后宫  
-购买地址
-🎮 基础信息
-名称: AURA: Ca...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-12T19:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-13</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/%E5%86%92%E9%99%A9/" rel="tag">冒险</a>, <a class="tag-none-link" href="/tags/%E5%8D%A1%E7%89%8C/" rel="tag">卡牌</a>, <a class="tag-none-link" href="/tags/%E8%B7%A8%E8%B6%8A%E7%A7%8D/" rel="tag">跨越种</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/AURA:Cards/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/ProjectIsland/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://s21.ax1x.com/2025/03/13/pEUw8z9.webp" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/ProjectIsland/" itemprop="mainEntityOfPage"><span itemprop="name headline">荒岛 X 爱 X 求生</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🏝️ 荒岛 X 爱 X 求生 | 重生之我在荒岛当海王 🌊Version 1.1 全动态中文版 | 策略养成+生存冒险  
-购买地址
-🎮 基础情报
-名称: 荒岛 X 爱 X 求生  
-类型: 生存策略｜文字冒险｜后宫养成  
-开...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-12T19:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-13</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/SLG/" rel="tag">SLG</a>, <a class="tag-none-link" href="/tags/%E6%B1%82%E7%94%9F/" rel="tag">求生</a>, <a class="tag-none-link" href="/tags/%E7%BB%8F%E8%90%A5/" rel="tag">经营</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/ProjectIsland/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/Seek%20Girl:Fog%20%E2%85%A0/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://img.picui.cn/free/2025/03/13/67d21e812980d.jpg" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/Seek%20Girl:Fog%20%E2%85%A0/" itemprop="mainEntityOfPage"><span itemprop="name headline">Seek Girl:Fog Ⅰ</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🔥《Seek Girl:Fog Ⅰ》 寻找女孩：雾🌫️ 迷雾の绅士救赎战！老婆全动态声控福利！购买地址💀【致命迷雾】👑王国突现吞噬少女的诡雾！你作为天选勇者，左手走位闪避触手怪，右手解谜收割30+绝美少女💃！是揭开阴谋还是沉...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-12T17:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-13</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/2D/" rel="tag">2D</a>, <a class="tag-none-link" href="/tags/SLG/" rel="tag">SLG</a>, <a class="tag-none-link" href="/tags/%E8%BF%B7%E5%A4%B1/" rel="tag">迷失</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/Seek%20Girl:Fog%20%E2%85%A0/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/%E5%A6%96%E8%AF%AD%C2%B7Yokai'sSecret/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://img.picui.cn/free/2025/03/13/67d1d1a6d2f5f.jpg" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/%E5%A6%96%E8%AF%AD%C2%B7Yokai'sSecret/" itemprop="mainEntityOfPage"><span itemprop="name headline">妖语·Yokai's Secret</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🌸🔥《妖语·Yokai’s Secret》👺 与妖共舞の色彩救赎！
-购买地址💮【剧情高能】🎎“和之国”樱花凋零，14位妖怪娘集体黑化！昔日”hentai大师”重出江湖，用❤绅士之力❤解开暴乱谜团，让世界重染绮丽之色！🎨
-✨...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-11T17:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-12</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/PUZ/" rel="tag">PUZ</a>, <a class="tag-none-link" href="/tags/%E7%9B%8A%E6%99%BA/" rel="tag">益智</a>, <a class="tag-none-link" href="/tags/%E8%A7%A3%E8%B0%9C/" rel="tag">解谜</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/%E5%A6%96%E8%AF%AD%C2%B7Yokai'sSecret/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/%E5%82%B2%E6%85%A2%E7%9A%84%E6%80%AA%E5%85%BD%E5%85%AC%E4%B8%BB%E4%B8%8E%E5%90%8D%E4%BE%A6%E6%8E%A2%E4%BD%BF%E9%AD%94/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://img.picui.cn/free/2025/03/13/67d1cbe98e315.jpg" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/%E5%82%B2%E6%85%A2%E7%9A%84%E6%80%AA%E5%85%BD%E5%85%AC%E4%B8%BB%E4%B8%8E%E5%90%8D%E4%BE%A6%E6%8E%A2%E4%BD%BF%E9%AD%94/" itemprop="mainEntityOfPage"><span itemprop="name headline">傲慢的怪兽公主与名侦探使魔</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🔥《傲慢的怪兽公主与名侦探使魔》✨ 外星女王の腿部挂件模拟器！购买地址🌌【宇宙级の羞耻play】👾被外星暴君绑架当宠物？金发毒舌美少女竟有灭星级战力！白天征服星球，夜晚侍寝贴贴——地球侦探の星际求生法则：抱紧黑丝大腿就完事了！�...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-10T17:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-11</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/2D/" rel="tag">2D</a>, <a class="tag-none-link" href="/tags/SLG/" rel="tag">SLG</a>, <a class="tag-none-link" href="/tags/%E4%BA%92%E5%8A%A8/" rel="tag">互动</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/%E5%82%B2%E6%85%A2%E7%9A%84%E6%80%AA%E5%85%BD%E5%85%AC%E4%B8%BB%E4%B8%8E%E5%90%8D%E4%BE%A6%E6%8E%A2%E4%BD%BF%E9%AD%94/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/cg/Day%20Dream/">
-                        
-                            <img class="kratos-entry-thumb-new-img" src="https://image.acg.lol/file/2025/02/20/photo_3_2025-02-18_20-54-00.jpg" alt="">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a>
-                        <h2 class="kratos-entry-title-new"><a href="/cg/Day%20Dream/" itemprop="mainEntityOfPage"><span itemprop="name headline">在蝴蝶飞舞之时</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                🔥🦋《在蝴蝶飞舞之时》💫 幻境逃生×禁忌绽放！Steam官中步兵版🎮【致命の诱惑】💃  
-
-病娇幻境生存ACT ✨全程丝滑动态演绎  
-全CG画廊解禁❗战败即触发20+段互动动画  
-一键锁血🔓手残党也能畅享”深度”剧情
-...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2025-01-09T18:00:00.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2025-01-10</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/2D/" rel="tag">2D</a>, <a class="tag-none-link" href="/tags/ACT/" rel="tag">ACT</a>, <a class="tag-none-link" href="/tags/%E5%8A%A8%E6%80%81/" rel="tag">动态</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/cg/Day%20Dream/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-
-
-    <div class='text-center pagination'>
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-    </div>
-
-
-
-    <div class="hidden">
-        <!-- 加载文章阅读对应的统计功能，评论自带的那种 -->
-        
-    </div>
-
-
-
-        
-
-            </section>
-
-        
-
-                
-            
-
-<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
-    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
-    
-        <div class="sticky-area">
-    
-    
-                <aside id="krw-about" class="widget widget-kratos-about clearfix">
-    <div class="photo-background"></div>
-    <div class="photo-wrapper clearfix">
-        <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/avatar1.webp" loading="lazy" decoding="auto" />
-        </div>
-    </div>
-    <div class="textwidget">
-        <p class="text-center"></p>
-    </div>
-    <div class="site-meta">
-        <a class="meta-item" href="/archives/">
-            <span class="title">
-                文章
-            </span>
-            <span class="count">
-                24
-            </span>
-        </a>
-        <a class="meta-item" href="/categories/">
-            <span class="title">
-                分类
-            </span>
-            <span class="count">
-                2
-            </span>
-        </a>
-        <a class="meta-item" href="/tags/">
-            <span class="title">
-                标签
-            </span>
-            <span class="count">
-                32
-            </span>
-        </a>
-    </div>
-</aside>
-            
-                
-  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
-    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9B%E4%BD%9C%E8%80%85/">创作者</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a><span class="category-list-count">21</span></li></ul>
-  </aside>
-
-
-            
-                
-  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
-    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
-      <div class="tag-clouds">
-        <a href="/tags/2D/" style="font-size: 0.8em;">2D</a> <a href="/tags/3d/" style="font-size: 0.6em;">3d</a> <a href="/tags/ACT/" style="font-size: 0.67em;">ACT</a> <a href="/tags/AVG/" style="font-size: 0.6em;">AVG</a> <a href="/tags/LVG/" style="font-size: 0.6em;">LVG</a> <a href="/tags/PUZ/" style="font-size: 0.63em;">PUZ</a> <a href="/tags/SLG/" style="font-size: 0.77em;">SLG</a> <a href="/tags/%E4%BA%92%E5%8A%A8/" style="font-size: 0.6em;">互动</a> <a href="/tags/%E4%BB%99%E4%BE%A0/" style="font-size: 0.6em;">仙侠</a> <a href="/tags/%E4%BC%91%E9%97%B2/" style="font-size: 0.63em;">休闲</a> <a href="/tags/%E5%86%92%E9%99%A9/" style="font-size: 0.63em;">冒险</a> <a href="/tags/%E5%89%A7%E6%83%85/" style="font-size: 0.7em;">剧情</a> <a href="/tags/%E5%8A%A8%E4%BD%9C/" style="font-size: 0.6em;">动作</a> <a href="/tags/%E5%8A%A8%E6%80%81/" style="font-size: 0.6em;">动态</a> <a href="/tags/%E5%8D%A1%E7%89%8C/" style="font-size: 0.73em;">卡牌</a> <a href="/tags/%E5%9B%BD%E4%BA%A7/" style="font-size: 0.6em;">国产</a> <a href="/tags/%E5%BF%8D%E8%80%85/" style="font-size: 0.6em;">忍者</a> <a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 0.6em;">恋爱</a>
-      </div>
-  </aside>
-
-            
-                
-  <aside id="krw-posts" class="widget widget-kratos-posts">
-  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
-  <div class="tab-content">
-      <ul class="list-group">
-        
-        
-          
-          
-            <a class="list-group-item" href="/cg/Half-Demon/"><i class="fa  fa-book"></i> 半妖忍少女 Half-Demon Shinobi</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/cg/SummerForYou/"><i class="fa  fa-book"></i> 夏日为你 Summer For You</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/cg/Miss%20Neko/"><i class="fa  fa-book"></i> 《猫咪小姐1-3》</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/cg/TakeMeToThe/"><i class="fa  fa-book"></i> Take Me To The Dungeon!! 带我去地下城吧</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/cg/AURA:Cards/"><i class="fa  fa-book"></i> 奥拉：卡牌狂潮</a>
-            
-          
-        
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-      </ul>
-  </div>
-  </aside>
-
-            
-    </div>
-</section>
-        
-        </div>
-    </div>
-</div>
-<footer>
-    <div id="footer"  class="ap-lrc"  >
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 footer-list text-center">
-                    <ul class="kratos-social-icons">
-                        <!-- Keep for compatibility -->
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <!-- New links -->
-                        
-                    </ul>
-                    <ul class="kratos-copyright">
-                        <div>
-                            <li>&copy; 2025 游戏CG收藏馆 版权所有.</li>
-                            <li>本站已运行<span id="span_dt">Loading...</span></li>
-                        </div>
-                        <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
-                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by yxcgsc.</li>
-                        </div>
-                        <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
-                        </div>
-                        <div>
-                            
-                            
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="kr-tool text-center">
-            <div class="tool">
-                
-                    <div class="box search-box">
-                        <a href="/search/">
-                            <span class="fa fa-search"></span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="box theme-box" id="darkmode-switch">
-                        <span class="fa fa-adjust"></span>
-                    </div>
-                
-                
-                    <div class="box theme-box" id="snow-switch">
-                        <span class="fa fa-snowflake-o"></span>
-                    </div>
-                
-                
-            </div>
-            <div class="box gotop-box">
-                <span class="fa fa-chevron-up"></span>
-            </div>
-        </div>
-    </div>
-</footer>
-</div>
-</div>
-
-        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
-<script>
-    if (!window.kr) {
-        window.kr = {};
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
     }
-    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
-    window.kr.siteRoot = "/";
-</script>
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '游戏CG收藏',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/css/cat.css"><link rel="stylesheet" href="/css/bola.css"><span id="fps"></span><link rel="stylesheet" href="/css/sb.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"><div id="myscoll"></div><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div id="loading-box-me"><div id="wrapper"><div id="mouse"></div><div class="loader"></div><div class="loading-bar-me"><div class="progress-bar"></div></div><div class="status"><div class="state"></div><div class="percentage"></div></div></div></div></div><script>const preloader = {
+  endLoading: () => {
+    var loadingBox = document.getElementById('loading-box');
+    var loadingBoxme = document.getElementById('loading-box-me');
+    loadingBoxme.addEventListener('animationend', () => {setTimeout(function() {loadingBox.classList.add("loaded");}, 2000) })
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  },
+  otherendLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.otherendLoading();},10000)
 
-    <div>
-        <canvas id="snow"></canvas>
-        <script async src="/js/snow.min.js"></script>
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.otherendLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/%5Bobject%20Object%5D"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://img.picgo.net/2025/05/04/6dd92faa-f072-4063-9089-5b596a9219eca05d8a19a250ee42.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fa-solid fa-calendar-days"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/yxcg/"><i class="fa-fw fa-brands fa-telegram"></i><span> TG群</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://img.picgo.net/2025/05/04/temp_waifu2x_2x_1n_png22282b6451364044.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">游戏CG收藏</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw fa-solid fa-calendar-days"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/yxcg/"><i class="fa-fw fa-brands fa-telegram"></i><span> TG群</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">游戏CG收藏</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/cg/Half-Demon/" title="半妖忍少女 Half-Demon Shinobi"><img class="post-bg" src="https://img.picui.cn/free/2025/03/13/67d237375d16b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="半妖忍少女 Half-Demon Shinobi"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/Half-Demon/" title="半妖忍少女 Half-Demon Shinobi">半妖忍少女 Half-Demon Shinobi</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-16T17:00:00.000Z" title="发表于 2025-01-17 01:00:00">2025-01-17</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:21:38.642Z" title="更新于 2025-05-04 22:21:38">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🎴 半妖忍少女 Half-Demon Shinobi | 纯爱向驱魔卡牌Roguelite 🔥国产生态链力作 | 芒果派对发行 | 2024年12月18日Steam发售    购买地址🎮 核心信息速览 价格: 💰 史低$9.89（原价$10.99）   开发: 🦥树懒工作室 × 🐔绅士吉娃 × ⚙️Maker制造机   特色: 六大属性卡牌 | 三大战斗流派 | LIVE2D战败CG（可跳过）   语言: 简中&#x2F;繁中&#x2F;英&#x2F;日&#x2F;韩五语全支持   📜 王道剧情梗概 “团子结缘，仙人骨觉醒！”👧 宫小路安久（卖团子少女）偶遇失去情感的驱魔忍者真鸣，因身怀「仙人骨」卷入妖魔纷争！👺 为对抗夺取”欲、嗔、痴”的妖术师，二人踏上寻找情感碎片的冒险——🗡️ 是成为驱魔大师？还是堕入妖王容器？纯爱之旅由你书写！     🕹️ 硬核玩法解析🃏 卡牌构筑系统 六大属性: 水💧&#x2F;火🔥&#x2F;风🌪️&#x2F;雷⚡&#x2F;土🪨&#x2F;毒☠️   流派体系: ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/cg/SummerForYou/" title="夏日为你 Summer For You"><img class="post-bg" src="https://img.picgo.net/2025/05/04/Summer15c651e41ee55fe23.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="夏日为你 Summer For You"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/SummerForYou/" title="夏日为你 Summer For You">夏日为你 Summer For You</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-15T17:00:00.000Z" title="发表于 2025-01-16 01:00:00">2025-01-16</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:16:22.714Z" title="更新于 2025-05-04 22:16:22">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🌞夏日为你 Summer For You | 魅魔の恋爱倒计时💘DEMO Ver0.5.1 | 官方中文步兵版 | PC+安卓双端 | 2025年1月31日Steam发售   购买地址 🎮 基本信息速览 开发商: AniCore Team × Horny Capybara Studio   类型: 2D视觉小说 × 恋爱模拟 × 多结局   特色: 7大女主｜5条故事线｜动态漫画演出｜真人CV调情系统   发售日: 2025年1月31日（情人节特别更新v2.1.1已预告✨）   📖 剧情梗概 “处男の终极试炼！”母胎solo 21年的你，因触摸父亲收藏的「恶魔宝石」被卷入地狱危机！😱👿 魅魔哈莉奎娜要将你拖入深渊时，🧙♀️ 女巫艾丽西亚提出魔鬼交易：⏳两周内找到真爱并破处，否则永堕地狱🔥！    从考古宅男变身情场猎人，在7位风格迥异的美女间周旋：📱短信调情 | 🎁送礼攻略 | 💬话术博弈 | 🧩解谜互动    🌟 核心玩法🎴 恋爱模拟系统 好感度日记本：实时记录每位女主的💖心动密码（兴趣&#x2F;禁忌&#x2F;日程） ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/cg/Miss%20Neko/" title="《猫咪小姐1-3》"><img class="post-bg" src="https://s21.ax1x.com/2025/03/13/pEUBN4O.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《猫咪小姐1-3》"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/Miss%20Neko/" title="《猫咪小姐1-3》">《猫咪小姐1-3》</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-13T19:00:00.000Z" title="发表于 2025-01-14 03:00:00">2025-01-14</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:15:26.312Z" title="更新于 2025-05-04 22:15:26">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🐾✨《猫咪小姐1-3》全系列CG珍藏版炸裂登场！🎮三倍猫娘の高萌暴击🌟【3500kbps&#x2F;60fps丝滑收藏】 购买地址1购买地址2 🎀ฅ^•ﻌ•^ฅ 游戏档案萌系宇宙《Miss Neko》全三部曲🌟由【Double W】打造の治愈神作🐱发行商【Toffee Cafe】蒸汽工坊🍮PC版支持：简中&#x2F;繁中&#x2F;日文&#x2F;英文 ✅   🌈核心玩法の猫薄荷时间✦ 跳跃解谜×平台冒险 🧩+ 隐藏道具收集✦ 三作剧情串联 📜 解锁跨世代彩蛋✦ 撸猫换装系统 👗 200+可互动饰品✦ 动态CG画廊 🌸 触碰触发特殊语音✦ 彩蛋小游戏合集 🎯 钓鱼&#x2F;跑酷&#x2F;拼图三连   🚀特色暴风吸入💫三倍猫娘主角！傲娇&#x2F;温柔&#x2F;神秘三形态💫手绘动漫风 × 全LIVE2D动态演出💫解谜难度自由调节 🔍 手残党友好模式💫每作新增主题曲 🎵 声优全语音沉浸   📖剧情高萌预警“用猫爪挠破次元壁吧！”意外获得神秘铃铛的少女🔔变身能在人形与猫态自由切换的「灵猫使者」穿梭现实与妖怪世界 🌌...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/cg/TakeMeToThe/" title="Take Me To The Dungeon!! 带我去地下城吧"><img class="post-bg" src="https://img.picui.cn/free/2025/03/13/67d22de5e5ab2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Take Me To The Dungeon!! 带我去地下城吧"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/TakeMeToThe/" title="Take Me To The Dungeon!! 带我去地下城吧">Take Me To The Dungeon!! 带我去地下城吧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-13T19:00:00.000Z" title="发表于 2025-01-14 03:00:00">2025-01-14</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:12:34.285Z" title="更新于 2025-05-04 22:12:34">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🏰 Take Me To The Dungeon!! 带我去地下城吧 🗡️日系肉鸽卡牌×动态地牢探险 | 全日语CV | 多结局剧情   购买地址 🎮 核心玩法速览🌌 迷宫系统 立体地牢探索：预判未来3层路线，在商店&#x2F;怪物&#x2F;宝藏&#x2F;事件中规划最优解   Rogue元素：每次冒险随机生成全新迷宫布局，永不重复的闯关体验   惊喜彩蛋：点击怪物身体部位触发隐藏互动！👈（作者通关后才发现的秘密）  🎴 卡牌战斗 50+卡牌×20符文：自由构筑超神牌组，打出逆天Combo   爆衣系统：尤娜受伤时衣物会逐渐破损！👗→🩳（lsp狂喜）   四大流派：🔥 状态流：叠毒&#x2F;灼烧&#x2F;流血，慢性死亡的艺术🛡️ 防御流：反伤肚皮战，敌动我不动⚡ 蓄力流：猛虎一刀斩，秒天秒地秒空气💫 连击流：百花缭乱拳，单点爆破天花板  🎁 随机宝藏 能力强化：获得永久BUFF道具，打造逆天属性   神装组合：某些宝藏会产生化学反应，伤害突破数值天花板✨  📜 剧情与结局 多分支叙事：选择影响结局走向，解锁10+支线事件 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/cg/AURA:Cards/" title="奥拉：卡牌狂潮"><img class="post-bg" src="https://img.picui.cn/free/2025/03/13/67d2245d07654.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="奥拉：卡牌狂潮"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/AURA:Cards/" title="奥拉：卡牌狂潮">奥拉：卡牌狂潮</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-12T19:00:00.000Z" title="发表于 2025-01-13 03:00:00">2025-01-13</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:13:01.630Z" title="更新于 2025-05-04 22:13:01">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🎴 奥拉：卡牌狂潮 | 中文豪华版全DLC整合包 🐉Build.13069759-1.2.3+新年日历+全DLC | 免安装版 | 1.31GB冒险/卡牌/视觉小说/魔法后宫   购买地址 🎮 基础信息 名称: AURA: Cards   类型: 冒险｜休闲｜角色扮演｜卡牌构筑   开发商: TopHouse Studio × AniCore Team   发行日期: 2023年10月20日   语言: 官方中文（含全DLC内容）   DLC清单:🎄 Jelly Christmas｜🌊 The Dark Sea｜🦊 Revenge of the Fox Spirit｜🔥 Horny Madness｜🎞️ Full Animations Pack   ⚙️ 配置需求   类型 最低配置    系统 Windows 7+ (x64)   CPU 2.0 GHz Core 2 Duo   内存 4 GB RAM   显卡 Intel HD Graphics 612   存储 2 GB 可用空间    🌟 游戏亮点👩❤️ 12位风格迥异的美少女🧝♀️...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/cg/ProjectIsland/" title="荒岛 X 爱 X 求生"><img class="post-bg" src="https://s21.ax1x.com/2025/03/13/pEUw8z9.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="荒岛 X 爱 X 求生"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/ProjectIsland/" title="荒岛 X 爱 X 求生">荒岛 X 爱 X 求生</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-12T19:00:00.000Z" title="发表于 2025-01-13 03:00:00">2025-01-13</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:15:22.609Z" title="更新于 2025-05-04 22:15:22">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🏝️ 荒岛 X 爱 X 求生 | 重生之我在荒岛当海王 🌊Version 1.1 全动态中文版 | 策略养成+生存冒险   购买地址 🎮 基础情报 名称: 荒岛 X 爱 X 求生   类型: 生存策略｜文字冒险｜后宫养成   开发商: 无人岛观光促进会   发行商: Alice Publication（《剑侠·风尘恋曲》同厂）   特色内容:🌴 荒岛基建｜💖 六位可攻略女角｜🔥 34+CG（含19动态）｜🌧️ 多结局分支   🌟 核心玩法🛠️ 硬核生存系统 双数值监控：饱食度🍖+饥渴值💧每日自动下降，采集&#x2F;烹饪保命！   昼夜资源机制：☀️ 白天：收集树枝🌿&#x2F;石头🗿&#x2F;浆果｜🌙 夜晚：解锁蘑菇🍄&#x2F;特殊道具   科技树升级：火把→绳索→雷击天气兵器⚡，用黑科技击落飞机解锁新女角✈️！  💘 恋爱经营指南 好感度事件：每位女角新增5段专属剧情（Ver 1.1更新）   交易系统：用”体力”换取❤️好感，不同姿势影响加成幅度～   逆天设定：开局人工呼吸❓→荒岛雷神召唤空难❓——H游戏の合理！   👩❤️...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/cg/Seek%20Girl:Fog%20%E2%85%A0/" title="Seek Girl:Fog Ⅰ"><img class="post-bg" src="https://img.picui.cn/free/2025/03/13/67d21e812980d.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Seek Girl:Fog Ⅰ"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/Seek%20Girl:Fog%20%E2%85%A0/" title="Seek Girl:Fog Ⅰ">Seek Girl:Fog Ⅰ</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-12T17:00:00.000Z" title="发表于 2025-01-13 01:00:00">2025-01-13</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:15:59.418Z" title="更新于 2025-05-04 22:15:59">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🔥《Seek Girl:Fog Ⅰ》 寻找女孩：雾🌫️ 迷雾の绅士救赎战！老婆全动态声控福利！购买地址💀【致命迷雾】👑王国突现吞噬少女的诡雾！你作为天选勇者，左手走位闪避触手怪，右手解谜收割30+绝美少女💃！是揭开阴谋还是沉沦温柔乡？全结局由你谱写！   🎮【高能亮点】💥✅ 30+动态老婆团：Live2D究极进化！呼吸颤动真实到想舔屏💋✅ 日配ASMR暴击：顶级声优耳畔喘息，建议搭配降噪耳机食用🎧✅ 随机地狱地图：三大难度×roguelike迷宫，欧皇与非酋的终极试炼🗺️✅ 隐藏の禁忌玩法：每个角落都有不可描述的互动彩蛋🥚✅ 多结局黑深残：纯爱战士VS后宫帝王，9种结局反转高能预警❗   ⚔️【硬核玩法】🔍▸ 走位风骚躲爆衣陷阱👗▸ 解谜收集神秘液体(…)升级战力💦▸ 抉择影响少女好感度+世界线变动🌍   ⚠️【绅士须知】🔞含艺术性战损&#x2F;捆绑play，全员满18岁！Steam免费补丁一键解锁隐藏剧情✨   🖥️【渣机也能冲】💻› 最低配置：十年老电脑流畅运行🤖› 体积：400MB（塞满4K动态CG的黑科技！） ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/cg/%E5%A6%96%E8%AF%AD%C2%B7Yokai'sSecret/" title="妖语·Yokai's Secret"><img class="post-bg" src="https://img.picui.cn/free/2025/03/13/67d1d1a6d2f5f.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="妖语·Yokai's Secret"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/%E5%A6%96%E8%AF%AD%C2%B7Yokai'sSecret/" title="妖语·Yokai's Secret">妖语·Yokai's Secret</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-11T17:00:00.000Z" title="发表于 2025-01-12 01:00:00">2025-01-12</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:11:41.902Z" title="更新于 2025-05-04 22:11:41">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🌸🔥《妖语·Yokai’s Secret》👺 与妖共舞の色彩救赎！ 购买地址💮【剧情高能】🎎“和之国”樱花凋零，14位妖怪娘集体黑化！昔日”hentai大师”重出江湖，用❤绅士之力❤解开暴乱谜团，让世界重染绮丽之色！🎨 ✨【核心亮点】🦊✔️14位日式妖怪娘：玉藻前&#x2F;雪女&#x2F;河童…全员Live2D动态社保互动✔️指尖调教の解谜玩法：移动色块破解「妖核暴走」真相✔️Steam最神秘DLC：免费解锁R18内容の终极绅士の礼✔️和风美学暴击：每一帧都能当壁纸的东方绮想世界 🎮【绅士必修课】📿1️⃣ 免费DLC安装秘籍：   ✅ Win+R输入 steam://install/1218040   ✅ 访问神秘链接点右下角安装   ❗ 注意：先删本体再操作！ 2️⃣ 解谜の奥义：   拖动色块重组妖核→抚摸妖怪娘敏感点→观看live2D特殊动画奖励💦 ⚠️【成人向警告】🔞含直球开车剧情与动态互动，所有妖怪娘均已修炼千年（法定成年认证√） ——————————👘 “大人，要摸摸我的尾巴吗？”...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/cg/%E5%82%B2%E6%85%A2%E7%9A%84%E6%80%AA%E5%85%BD%E5%85%AC%E4%B8%BB%E4%B8%8E%E5%90%8D%E4%BE%A6%E6%8E%A2%E4%BD%BF%E9%AD%94/" title="傲慢的怪兽公主与名侦探使魔"><img class="post-bg" src="https://img.picui.cn/free/2025/03/13/67d1cbe98e315.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="傲慢的怪兽公主与名侦探使魔"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/%E5%82%B2%E6%85%A2%E7%9A%84%E6%80%AA%E5%85%BD%E5%85%AC%E4%B8%BB%E4%B8%8E%E5%90%8D%E4%BE%A6%E6%8E%A2%E4%BD%BF%E9%AD%94/" title="傲慢的怪兽公主与名侦探使魔">傲慢的怪兽公主与名侦探使魔</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-10T17:00:00.000Z" title="发表于 2025-01-11 01:00:00">2025-01-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T14:14:15.186Z" title="更新于 2025-05-04 22:14:15">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🔥《傲慢的怪兽公主与名侦探使魔》✨ 外星女王の腿部挂件模拟器！购买地址🌌【宇宙级の羞耻play】👾被外星暴君绑架当宠物？金发毒舌美少女竟有灭星级战力！白天征服星球，夜晚侍寝贴贴——地球侦探の星际求生法则：抱紧黑丝大腿就完事了！💃 🎮【核心玩法爆炸】💥✔️ 全动态沉浸：Live2D丝滑互动，7套社保战袍实时换装（连体黑丝赛高！👙）✔️ 时间管理大师：练兵&#x2F;征战&#x2F;侍奉三线操作，体验外星996福报🌠✔️ **体位+++**：3种主菜+6位女领主甜点，动态CG狂戳XP系统🎯✔️ 声控福利：日语傲娇音全程暴击，尾音上扬の颅内高潮🎧   🌟【买点暴击】🚀◾ 前作《怠惰怪兽公主》正统续作，世界观拓展🌍◾ 比前作多200%的丝袜质感与体位开发🍑◾ 隐藏结局解锁外星阴谋，反转高能预警⚠️◾ Steam首周特惠+创意工坊暗示（懂的都懂）💻   📊【硬核评测】⚖️ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/cg/Day%20Dream/" title="在蝴蝶飞舞之时"><img class="post-bg" src="https://image.acg.lol/file/2025/02/20/photo_3_2025-02-18_20-54-00.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在蝴蝶飞舞之时"></a></div><div class="recent-post-info"><a class="article-title" href="/cg/Day%20Dream/" title="在蝴蝶飞舞之时">在蝴蝶飞舞之时</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-09T18:00:00.000Z" title="发表于 2025-01-10 02:00:00">2025-01-10</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-04T08:47:26.039Z" title="更新于 2025-05-04 16:47:26">2025-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8FCG/">游戏CG</a></span></div><div class="content">🔥🦋《在蝴蝶飞舞之时》💫 幻境逃生×禁忌绽放！Steam官中步兵版🎮【致命の诱惑】💃    病娇幻境生存ACT ✨全程丝滑动态演绎   全CG画廊解禁❗战败即触发20+段互动动画   一键锁血🔓手残党也能畅享”深度”剧情  🩸【硬核の浪漫】⚔️    “少女，欢迎来到我的箱庭——“失忆女主苏醒于血色荒原🌌，追逐神秘白发女郎揭开记忆谜团！穿梭黑影群聚的死亡回廊，解锁「浮空&#x2F;瞬移」超能力，用蝴蝶刃劈开生路！    ✅【三大致瘾要素】▸ 动态战败演出：按D键实时切换阶段变化，E键快进羞耻过程😈▸ 肉体成长系统：受伤部位会呈现不同潮红状态🌸▸ 作弊救星：F2开启无双模式，专心观赏”特殊战斗”   🎭【禁忌体验】⚠️ 每帧都在挑战审核底线：    黑影触手の缠绕教学   浮空状态の重力失控   治疗时的能量补充play  🕹️【操作指南】←→移动 | Z跳跃斩 | X蝴蝶刃 | 空格浮空Shift瞬移 | F互动 | R回血（有惊喜）   💥 警告：本作被称作「美少女版魂斗罗」——碰触即死的超高难度，硬核玩家の试炼场！   🔞...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://img.picgo.net/2025/05/04/6dd92faa-f072-4063-9089-5b596a9219eca05d8a19a250ee42.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">yxcgsc</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://t.me/yxcgsc"><i class="fa-brands fa-telegram"></i><span>Telegram</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><center><h2>加群点击上方☝️</h2></center> <center><b>🎮✨【CG收藏馆】✨🎮</b></center> 🌟佛系随缘更 <br> 🌟超清画质 <br> 🌟全流程剪辑 <br> 🌟主题分类合集📽️ <br> 🌟按标签检索想看の流派🔍 <br> <center><b>🚫重要声明</b></center> ⚠️ 本频道纯!为!爱!发!电!<br> ⚠️ 所有视频禁止二改/倒卖/商用 <br> ⚠️ 暂无下载渠道  <br> ⚠️ 录制均来自正版|请支持开发者💖 <br></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/cg/Half-Demon/" title="半妖忍少女 Half-Demon Shinobi"><img src="https://img.picui.cn/free/2025/03/13/67d237375d16b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="半妖忍少女 Half-Demon Shinobi"/></a><div class="content"><a class="title" href="/cg/Half-Demon/" title="半妖忍少女 Half-Demon Shinobi">半妖忍少女 Half-Demon Shinobi</a><time datetime="2025-01-16T17:00:00.000Z" title="发表于 2025-01-17 01:00:00">2025-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/cg/SummerForYou/" title="夏日为你 Summer For You"><img src="https://img.picgo.net/2025/05/04/Summer15c651e41ee55fe23.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="夏日为你 Summer For You"/></a><div class="content"><a class="title" href="/cg/SummerForYou/" title="夏日为你 Summer For You">夏日为你 Summer For You</a><time datetime="2025-01-15T17:00:00.000Z" title="发表于 2025-01-16 01:00:00">2025-01-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/cg/Miss%20Neko/" title="《猫咪小姐1-3》"><img src="https://s21.ax1x.com/2025/03/13/pEUBN4O.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《猫咪小姐1-3》"/></a><div class="content"><a class="title" href="/cg/Miss%20Neko/" title="《猫咪小姐1-3》">《猫咪小姐1-3》</a><time datetime="2025-01-13T19:00:00.000Z" title="发表于 2025-01-14 03:00:00">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/cg/TakeMeToThe/" title="Take Me To The Dungeon!! 带我去地下城吧"><img src="https://img.picui.cn/free/2025/03/13/67d22de5e5ab2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Take Me To The Dungeon!! 带我去地下城吧"/></a><div class="content"><a class="title" href="/cg/TakeMeToThe/" title="Take Me To The Dungeon!! 带我去地下城吧">Take Me To The Dungeon!! 带我去地下城吧</a><time datetime="2025-01-13T19:00:00.000Z" title="发表于 2025-01-14 03:00:00">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/cg/AURA:Cards/" title="奥拉：卡牌狂潮"><img src="https://img.picui.cn/free/2025/03/13/67d2245d07654.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="奥拉：卡牌狂潮"/></a><div class="content"><a class="title" href="/cg/AURA:Cards/" title="奥拉：卡牌狂潮">奥拉：卡牌狂潮</a><time datetime="2025-01-12T19:00:00.000Z" title="发表于 2025-01-13 03:00:00">2025-01-13</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%9B%E4%BD%9C%E8%80%85/"><span class="card-category-list-name">创作者</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8FCG/"><span class="card-category-list-name">游戏CG</span><span class="card-category-list-count">21</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E4%BC%91%E9%97%B2/" style="font-size: 1.17em; color: #999c9f">休闲</a> <a href="/tags/%E8%B7%A8%E8%B6%8A%E7%A7%8D/" style="font-size: 1.1em; color: #999">跨越种</a> <a href="/tags/%E5%86%92%E9%99%A9/" style="font-size: 1.17em; color: #999c9f">冒险</a> <a href="/tags/%E8%BF%B7%E5%A4%B1/" style="font-size: 1.1em; color: #999">迷失</a> <a href="/tags/%E6%B1%82%E7%94%9F/" style="font-size: 1.1em; color: #999">求生</a> <a href="/tags/%E4%BA%92%E5%8A%A8/" style="font-size: 1.1em; color: #999">互动</a> <a href="/tags/%E5%8A%A8%E4%BD%9C/" style="font-size: 1.1em; color: #999">动作</a> <a href="/tags/%E5%9B%BD%E4%BA%A7/" style="font-size: 1.1em; color: #999">国产</a> <a href="/tags/2D/" style="font-size: 1.5em; color: #99a9bf">2D</a> <a href="/tags/%E5%89%A7%E6%83%85/" style="font-size: 1.3em; color: #99a1ac">剧情</a> <a href="/tags/%E6%88%98%E6%96%97/" style="font-size: 1.17em; color: #999c9f">战斗</a> <a href="/tags/%E6%A0%BC%E6%96%97/" style="font-size: 1.1em; color: #999">格斗</a> <a href="/tags/%E7%9B%8A%E6%99%BA/" style="font-size: 1.17em; color: #999c9f">益智</a> <a href="/tags/PUZ/" style="font-size: 1.17em; color: #999c9f">PUZ</a> <a href="/tags/%E4%BB%99%E4%BE%A0/" style="font-size: 1.1em; color: #999">仙侠</a> <a href="/tags/%E8%B5%8C%E5%8D%9A/" style="font-size: 1.1em; color: #999">赌博</a> <a href="/tags/%E8%82%89%E9%B8%BD/" style="font-size: 1.1em; color: #999">肉鸽</a> <a href="/tags/3d/" style="font-size: 1.1em; color: #999">3d</a> <a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.1em; color: #999">恋爱</a> <a href="/tags/%E9%AD%94%E7%89%A9%E5%A8%98/" style="font-size: 1.17em; color: #999c9f">魔物娘</a> <a href="/tags/%E8%A7%A3%E8%B0%9C/" style="font-size: 1.17em; color: #999c9f">解谜</a> <a href="/tags/%E5%8A%A8%E6%80%81/" style="font-size: 1.1em; color: #999">动态</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 1.17em; color: #999c9f">模拟</a> <a href="/tags/%E7%8B%AC%E7%AB%8B/" style="font-size: 1.1em; color: #999">独立</a> <a href="/tags/%E5%8D%A1%E7%89%8C/" style="font-size: 1.37em; color: #99a4b2">卡牌</a> <a href="/tags/ACT/" style="font-size: 1.23em; color: #999ea6">ACT</a> <a href="/tags/%E6%AD%A3%E5%A4%AA/" style="font-size: 1.1em; color: #999">正太</a> <a href="/tags/%E7%BB%8F%E8%90%A5/" style="font-size: 1.1em; color: #999">经营</a> <a href="/tags/SLG/" style="font-size: 1.43em; color: #99a6b9">SLG</a> <a href="/tags/LVG/" style="font-size: 1.1em; color: #999">LVG</a> <a href="/tags/AVG/" style="font-size: 1.1em; color: #999">AVG</a> <a href="/tags/%E5%BF%8D%E8%80%85/" style="font-size: 1.1em; color: #999">忍者</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
     </div>
-
-
-    <script async src="/js/candy.min.js"></script>
-
-
-
-    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
-    
-    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
-    <meting-js
-        server="netease"
-        type="playlist"
-        id="1377164042"
-        order="random"
-        fixed="true"
-    >
-    </meting-js>
-
-
-
-    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-
-<script defer src="/js/kratosr.min.js"></script>
-<script defer src="/js/pjax.min.js"></script>
-
-
-
-<!-- Extra support for third-party plguins  -->
-
-
-    </body>
-</html>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/01/">
+            <span class="card-archive-list-date">
+              一月 2025
+            </span>
+            <span class="card-archive-list-count">23</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/1999/01/">
+            <span class="card-archive-list-date">
+              一月 1999
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">24</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-05-04T14:48:46.782Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By yxcgsc</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><script src="/js/chartshb.js"></script><script async src="/js/fps.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
