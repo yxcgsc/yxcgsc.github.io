@@ -1,3 +1,0 @@
-var posts=["/cg/Colony City 27 Lambda/","/cg/Day Dream/","/cg/Miss Neko-Pirates/","/cg/傲慢的怪兽公主与名侦探使魔/","/cg/Rebirth Ii/","/cg/ReturnAtis/","/cg/kamihikoki_mmd/","/cg/mashGirls/","/cg/Yahtzee Girl/","/cg/yxcg/","/cg/不双修就去世/","/cg/Half-Demon/","/cg/地下偶像/","/cg/SummerForYou/","/cg/AURA:Cards/","/cg/Seek Girl:Fog Ⅰ/","/cg/妖语·Yokai'sSecret/","/cg/TakeMeToThe/","/cg/ksyl/","/cg/Dead-End/","/cg/Miss Neko/","/cg/ドゥアズ～神父様ノ言いなり/","/cg/暴食的怪兽公主/","/cg/ProjectIsland/","/cg/2LOST2/"];function toRandomPost(){
-    pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
-  };
