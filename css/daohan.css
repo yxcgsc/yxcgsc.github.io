@@ -1,0 +1,15 @@
+ /* 导航栏颜色 */
+  #page-header.nav-fixed #nav {
+    background: linear-gradient(#ffffff44);
+    -webkit-backdrop-filter: blur(6px)!important;
+    backdrop-filter: blur(6px)!important;
+    opacity: 0.95;
+    backdrop-filter: var(--backdrop-filter);
+  }
+  [data-theme="dark"] #page-header.nav-fixed #nav {
+    background: linear-gradient(45deg,#00000038) !important;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  
+ 

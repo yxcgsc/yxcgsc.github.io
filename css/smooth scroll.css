@@ -1,0 +1,5 @@
+/* 禁用原生滚动条（可选） */
+html {
+  overflow: hidden;
+  height: 100%;
+}

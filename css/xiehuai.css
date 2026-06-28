@@ -1,0 +1,18 @@
+[data-theme="light"] #snow {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;  /* 使用视口宽度单位 */
+    height: 100vh;  /* 使用视口高度单位 */
+    pointer-events: none;
+    z-index: 9999;  /* 设置为最大层级 */
+    overflow: visible;
+    transform: translateZ(0); /* 启用硬件加速 */
+}
+  
+  /* 雪花黑夜模式不显示 */
+  [data-theme="dark"] #snow{
+    display: none;
+  }
+  
